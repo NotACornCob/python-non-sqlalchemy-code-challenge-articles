@@ -6,7 +6,18 @@ class Article:
         
 class Author:
     def __init__(self, name):
+        self._name = None
         self.name = name
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if not hasattr(self, '_name') or self._name is None:
+            if isinstance(name, str) and len(name) > 1:
+                self._name = name
 
     def articles(self):
         pass
@@ -24,6 +35,25 @@ class Magazine:
     def __init__(self, name, category):
         self.name = name
         self.category = category
+    
+    @property 
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self,name):
+        if isinstance(name,str) and (2 <= len(name) <= 16):
+            self._name = name
+
+    @property
+    def category(self):
+        return self._category
+    
+    @category.setter 
+    def category(self,category):
+        if isinstance(category,str) and (len(category) > 0):
+            self._category = category
+
 
     def articles(self):
         pass
@@ -36,3 +66,7 @@ class Magazine:
 
     def contributing_authors(self):
         pass
+
+author = Author("Cary")
+author.name = "Jack"
+print(author.name)
