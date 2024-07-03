@@ -50,7 +50,9 @@ class Author:
 
     @name.setter
     def name(self, name):
-        if not hasattr(self, '_name') or self._name is None:
+        if hasattr(self,'_name'):
+            return None
+        else:
             if isinstance(name, str) and (len(name) > 1):
                 self._name = name
 
